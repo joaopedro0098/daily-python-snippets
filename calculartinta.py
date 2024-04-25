@@ -1,17 +1,26 @@
 # Aqui iremos calcular a quantidade de latas necessárias para pintar uma área assim como o valor que será gasto
 
-
-# 1 - Aqui pegaremos a área em questão
+# - Aqui pegaremos a área em questão
 def pegar_area_usuario():
-    area = int(input("Qual a área a ser pintada (m²): "))
+    area = int(input("Informe a área (M²) a ser pintada: "))
     return area
 
-# 2 - Considerando que 1L de tinta faz 6m², dividiremos a área por 6 para saber quantos litros precisar
-def calcular_litros_precisamos(area):
-    litros = area / 6
+# - Pegaremos quanto a tinta faz por litro
+def rendimento_tinta(): 
+    rendimento = int(input("Informe quantos M² essa tinta faz por litro: "))
+    return rendimento
+
+# - Pediremos o valor da lata que ele deseja comprar
+def valor_da_lata(): 
+    valor = float(input("Informe o valor da lata: "))
+    return valor
+
+# - Considerando que 1L de tinta faz 6m², dividiremos a área por 6 para saber quantos litros precisar
+def calcular_litros_precisamos(area, rendimento):
+    litros = area / rendimento
     return litros
-    
-'''3 - Aqui calcularemos a quantidade de latas necessárias considerando que uma lata possui 18L. Além disso
+
+'''- Aqui calcularemos a quantidade de latas necessárias considerando que uma lata possui 18L. Além disso
        se a quantidade de latas der número quebrado (o que não prática é possível) o sistema adicionará mais uma lata
        para que tenha tinta o suficiente'''
 def calcular_latas(litros):
@@ -20,19 +29,22 @@ def calcular_latas(litros):
         latas = int(latas) + 1
     return latas
 
-# 4 - Considerando que o preço da lata é R$250, calcularemos o preço total 
-def calcular_preco(latas):
-    preco = latas * 250
+# - Considerando que o preço da lata é R$250, calcularemos o preço total
+def calcular_preco(latas, valor):
+    preco = latas * valor
     return preco
-    
 
-# 5 - Armazenei as funções em variáveis
+
+
+# - Armazenei as funções nas variáveis
 area = pegar_area_usuario()
-litros = calcular_litros_precisamos(area)
+rendimento = rendimento_tinta ()
+valor = valor_da_lata()
+litros = calcular_litros_precisamos(area, rendimento)
 latas = calcular_latas(litros)
-preco = calcular_preco(latas)
+preco = calcular_preco(latas, valor)
 
-
-# 6 - chamei as funções armazenadas nas variaveis
-print("Quantidade de latas ", latas)
-print("Preço: ", preco)
+# - mandei printar na tela
+print("-----------------------------------------")
+print("- Você precisará de", latas, "lata(s)")
+print("- O valor a pagar será: R$", preco)
